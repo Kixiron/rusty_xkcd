@@ -8,12 +8,12 @@ matrix:
     - rust: nightly
 cache: cargo
 install:
-  - cargo build -- verbose --all
+  - cargo build
   - rustup component add rustfmt
   - rustup component add clippy
 script:
   - cargo --fmt --all -- --check
   - cargo clippy --all-targets
-  - cargo build --verbose --all
+  - cargo build
   - cargo test --verbose --all
   - cargo doc --verbose --all
