@@ -1,0 +1,19 @@
+language: rust
+rust:
+  - stable
+  - beta
+  - nightly
+matrix:
+  allow_failures:
+    - rust: nightly
+cache: cargo
+install:
+  - cargo build -- verbose --all
+  - rustup component add rustfmt
+  - rustup component add clippy
+script:
+  - cargo --fmt --all -- --check
+  - cargo clippy --all-targets
+  - cargo build --verbose --all
+  - cargo test --verbose --all
+  - cargo doc --verbose --all
