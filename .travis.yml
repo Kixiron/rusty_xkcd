@@ -15,4 +15,5 @@ script:
   - cargo fmt -- --check --verbose
   - cargo clippy --all-targets
   - cargo build --verbose --all
-  - cargo test --verbose --all  
+  - cargo test --verbose --all
+  - cargo bench --verbose
