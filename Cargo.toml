@@ -13,9 +13,12 @@ keywords = [
     "rest"
 ]
 license-file = "LICENSE"
-include = [
-    "**/*.rs",
-    "Cargo.toml",
+exclude = [
+    "benches/*",
+    "tests/*",
+    ".travis.yml",
+    ".gitignore",
+    "target/*"
 ]
 
 [badges]
