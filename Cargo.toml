@@ -3,7 +3,8 @@ name = "rusty_xkcd"
 version = "0.1.0"
 authors = ["Kixiron <kixiron.contact@gmail.com>"]
 edition = "2018"
-descripton = "An API wrapper for xkcd.com"
+description = "An API wrapper for xkcd.com"
+repository = "https://github.com/Kixiron/rusty_xkcd"
 readme = "README.md"
 keywords = [
     "xkcd",
