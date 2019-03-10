@@ -4,9 +4,19 @@ version = "0.1.0"
 authors = ["Kixiron <kixiron.contact@gmail.com>"]
 edition = "2018"
 descripton = "An API wrapper for xkcd.com"
-readme = "./README.md"
-keywords = ["xkcd", "comic", "api", "wrapper", "rest"]
-license-file = "./LICENSE"
+readme = "README.md"
+keywords = [
+    "xkcd",
+    "comic",
+    "api",
+    "wrapper",
+    "rest"
+]
+license-file = "LICENSE"
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+]
 
 [badges]
 appveyor = { repository = "rusty_xkcd", branch = "master", service = "github" }
