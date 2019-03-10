@@ -6,15 +6,11 @@ use criterion::Criterion;
 use rusty_xkcd::*;
 
 fn get_comic_bench(c: &mut Criterion) {
-    c.bench_function("Get Comic", |b| {
-        b.iter(|| Comic::get_comic(589).unwrap())
-    });
+    c.bench_function("Get Comic", |b| b.iter(|| Comic::get_comic(589).unwrap()));
 }
 
 fn get_latest_comic_bench(c: &mut Criterion) {
-    c.bench_function("Get Comic", |b| {
-        b.iter(|| Comic::get_latest_comic().unwrap())
-    });
+    c.bench_function("Get Comic", |b| b.iter(|| Comic::get_latest_comic().unwrap()));
 }
 
 /* DISABLED UNTIL WORKING
@@ -25,5 +21,9 @@ fn get_random_comic_bench(c: &mut Criterion) {
 }
 */
 
-criterion_group!(comic_benches, get_comic_bench, get_latest_comic_bench /*, get_random_comic_bench*/);
+criterion_group!(
+    comic_benches,
+    get_comic_bench,
+    get_latest_comic_bench
+);
 criterion_main!(comic_benches);
