@@ -15,7 +15,6 @@ keywords = [
     "rest"
 ]
 license = "Apache 2.0"
-license-file = "LICENSE"
 exclude = [
     "benches/*",
     "tests/*",
