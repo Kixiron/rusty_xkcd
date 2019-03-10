@@ -1,7 +1,7 @@
 extern crate chrono;
+extern crate rand;
 extern crate reqwest;
 extern crate serde_json;
-extern crate rand;
 
 use super::Error;
 
@@ -131,7 +131,8 @@ fn request_comic(url: &str) -> Result<Comic, Error> {
 
 /// # Parse JSON
 /// Parses the JSON from the xkcd API into a `Comic` struct
-fn parse_comic(raw_json: &str) -> Comic { // Document This
+fn parse_comic(raw_json: &str) -> Comic {
+    // Document This
     use chrono::prelude::*;
 
     // Desearilize the JSON from xkcd API
