@@ -1,3 +1,4 @@
+# rusty_xkcd Travis CI script
 language: rust
 rust:
   - stable
@@ -7,10 +8,17 @@ matrix:
   allow_failures:
     - rust: nightly
 cache: cargo
+# Install rustfmt and clippy
 install:
   - cargo build
   - rustup component add rustfmt
   - rustup component add clippy
+# Run build script
+# rustfmt
+# clippy
+# build
+# test
+# benchmark
 script:
   - cargo fmt -- --check --verbose
   - cargo clippy --all-targets

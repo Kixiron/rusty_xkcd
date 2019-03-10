@@ -64,7 +64,7 @@ impl Comic {
 
 impl Comic {
     /// # Get Latest Comic
-    /// Fetches the latest xkcd comic
+    /// Fetches the latest xkcd comic.
     ///
     /// ## Usage
     /// ```rust
@@ -98,6 +98,7 @@ impl Comic {
 
 /// # Request Comic
 /// Requests a comic via formed url
+/// Only accessable withing `comics.rs`
 ///
 /// ## Usage
 /// ```rust
@@ -113,7 +114,6 @@ impl Comic {
 /// #         date: Utc.ymd(2009, 5, 27),
 /// #     })
 /// # }
-/// # // ADD PARSE JSON
 /// let comic_one: Comic = request_comic("https://xkcd.com/589/info.0.json").unwrap(); // Get the 100'th xkcd comic
 ///
 /// let url: String = String::from("https://xkcd.com/589/info.json"); // Form the url for the xkcd comic
@@ -164,7 +164,8 @@ fn parse_comic(raw_json: &str) -> Comic {
 }
 
 /// # Get Latest Comic Number
-/// Gets the number of the most recent xkcd comic
+/// Gets the number of the most recent xkcd comic.
+/// Only accessable within `comics.rs`
 ///
 /// ## Usage
 ///
@@ -184,8 +185,8 @@ fn parse_comic(raw_json: &str) -> Comic {
 /// # fn get_latest_comic_number() -> Result<i32, Error> {
 /// #     Ok(589)
 /// # }
-/// let latest_number: i32 = get_latest_comic_number().unwrap();
-/// let latest_comic: Comic = get_latest_comic().unwrap();
+/// let latest_number: i32 = get_latest_comic_number().unwrap(); // Get the latest comic number
+/// let latest_comic: Comic = get_latest_comic().unwrap(); // Get the latest comic
 /// assert_eq!(latest_number, latest_comic.number);
 /// ````
 fn get_latest_comic_number() -> Result<i32, Error> {

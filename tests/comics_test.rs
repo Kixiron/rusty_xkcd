@@ -1,7 +1,7 @@
 extern crate chrono;
 extern crate rusty_xkcd;
 
-use rusty_xkcd::*;
+use rusty_xkcd::Comic;
 
 #[test]
 fn get_comic_test() {
