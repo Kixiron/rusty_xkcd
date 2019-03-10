@@ -7,23 +7,21 @@ use super::Error;
 
 /// # Comic
 /// The data struct for xkcd comics
-///
-/// ## Contents
-/// `title`: The title of the xkcd comic  
-/// `url`: The url of the xkcd comic  
-/// `img_url`: The url of the image of the xkcd comic  
-/// `alt_text`: The alternative text or tooltip text oc the xkcd comic  
-/// `number`: The number of the xkcd comic, raning from 0 to newest  
-/// `date`: The date that the comic was published  
 #[derive(Debug)]
 #[allow(dead_code)]
 pub struct Comic {
-    pub title: String,                   // Title of the comic
-    pub url: String,                     // Url of the comic
-    pub img_url: String,                 // Image Url of the comic
-    pub alt_text: String,                // Alt text or tooltip text of the comic
-    pub number: i32,                     // Number of the comic
-    pub date: chrono::Date<chrono::Utc>, // Date that the comic was published
+    /// Title of the comic
+    pub title: String,
+    /// Url of the comic
+    pub url: String,
+    /// Image Url of tht comic
+    pub img_url: String,
+    /// Alt text or tooltip text of the comic
+    pub alt_text: String,
+    /// Number of the comic
+    pub number: i32,
+    /// Date that the comic was published
+    pub date: chrono::Date<chrono::Utc>,
 }
 
 impl Comic {

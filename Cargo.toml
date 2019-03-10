@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["Kixiron <kixiron.contact@gmail.com>"]
 edition = "2018"
 description = "An API wrapper for xkcd.com"
+documentation = "https://docs.rs/rusty_xkcd/0.1.0/rusty_xkcd/"
 repository = "https://github.com/Kixiron/rusty_xkcd"
 readme = "README.md"
 keywords = [
@@ -13,6 +14,7 @@ keywords = [
     "wrapper",
     "rest"
 ]
+license = "Apache 2.0"
 license-file = "LICENSE"
 exclude = [
     "benches/*",

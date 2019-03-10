@@ -2,6 +2,7 @@
 extern crate quick_error;
 
 /// # Rusty xkcd
+/// [![Build Status](https://travis-ci.org/Kixiron/rusty_xkcd.svg?branch=master)](https://travis-ci.org/Kixiron/rusty_xkcd)
 /// Rusty xkcd is an API wrapper for the [xkcd API](). It aims to give full access to the xkcd API with maximum preformance, control, and reliability.
 
 /// ## Errors
