@@ -23,10 +23,6 @@ exclude = [
     "target/*"
 ]
 
-[badges]
-appveyor = { repository = "rusty_xkcd", branch = "master", service = "github" }
-travis-ci = { repository = "rusty_xkcd", branch = "master" }
-
 [dependencies]
 quick-error = "1.2.2"
 serde_json = "1.0.39"
