@@ -5,7 +5,7 @@
 //! [![Crates.io](https://img.shields.io/crates/v/rusty_xkcd.svg)](https://crates.io/crates/rusty_xkcd)
 //! [![License](https://img.shields.io/github/license/kixiron/rusty_xkcd.svg)](https://github.com/Kixiron/rusty_xkcd/blob/master/LICENSE)
 //!
-//! Rusty Xkcd is an API wrapper for the [Xkcd API]().
+//! Rusty Xkcd is an API wrapper for the [Xkcd API](https://xkcd.com/json.html).
 //! It aims to give full access to the Xkcd API with maximum preformance, control, and reliability.
 //!
 //! ## Xkcd Comics
