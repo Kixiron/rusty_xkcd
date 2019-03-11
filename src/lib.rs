@@ -55,6 +55,10 @@
 //! The `Comic` struct contains both the static methods for getting an xkcd comic
 //! (`get_comic()`, etc.),
 //! as well as the comic data.
+//! 
+//! # Coming Soon
+//! [Explain Xkcd](https://www.explainxkcd.com)
+//! [What If](https://what-if.xkcd.com)
 //!
 
 #[macro_use]
