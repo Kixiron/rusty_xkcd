@@ -85,18 +85,28 @@ impl Comic {
 impl Comic {
     /// # Get Random Comic
     /// Fetches a random xkcd comic
+    /// 
+    /// ## Usage
+    /// ```rust
+    /// # use rusty_xkcd::Comic;
+    /// let comic: Comic = Comic::get_random_comic().unwrap(); // Get a random xkcd comic
+    /// println!("{:?}", comic);
+    /// println!("{}", comic.number);
+    /// println!("{}", comic.url);
+    /// ```
     pub fn get_random_comic() -> Result<Comic, Error> {
-        let comic_num: i32 = rand::random::<i32>();
-        match request_comic(&format!("https://xkcd.com/{}/info.json", comic_num)) {
-            Ok(data) => Ok(data),
-            Err(e) => Err(e),
-        }
+        use rand::prelude::*;
+
+        let latest_comic: i32 = get_latest_comic_number().unwrap();
+        let comic_num: i32 = thread_rng().gen_range(1, latest_comic);
+
+        Comic::get_comic(comic_num)
     }
 }
 
 /// # Request Comic
 /// Requests a comic via formed url
-/// Only accessable withing `comics.rs`
+/// Only accessable within `comics.rs`
 ///
 /// ## Usage
 /// ```rust

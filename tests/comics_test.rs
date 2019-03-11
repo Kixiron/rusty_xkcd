@@ -19,47 +19,34 @@ fn get_comic_test() {
         date: Utc.ymd(2009, 5, 27),
     };
 
-    // Make sure all fields are the same
-    assert_eq!(test_comic.title, control_comic.title);
-    assert_eq!(test_comic.url, control_comic.url);
-    assert_eq!(test_comic.img_url, control_comic.img_url);
-    assert_eq!(test_comic.alt_text, control_comic.alt_text);
-    assert_eq!(test_comic.number, control_comic.number);
-    assert_eq!(test_comic.date, control_comic.date);
+    compare_comics(test_comic, control_comic);
 }
 
 #[test]
 fn get_latest_comic_test() {
     // Fetch the latest comic twice to see if they are the same
+    let latest_comic: Comic = Comic::get_latest_comic().unwrap();
+    let control_comic: Comic = Comic::get_comic(latest_comic.number).unwrap();
+
+    compare_comics(latest_comic, control_comic);
+}
+
+#[test]
+fn get_latest_comic_consistency_test() {
+    // Fetch the latest comic twice to see if they are the same
     let comic_one: Comic = Comic::get_latest_comic().unwrap();
     let comic_two: Comic = Comic::get_latest_comic().unwrap();
 
-    // Make sure all fields are the same
-    assert_eq!(comic_one.title, comic_two.title);
-    assert_eq!(comic_one.url, comic_two.url);
-    assert_eq!(comic_one.img_url, comic_two.img_url);
-    assert_eq!(comic_one.alt_text, comic_two.alt_text);
-    assert_eq!(comic_one.number, comic_two.number);
-    assert_eq!(comic_one.date, comic_two.date);
+    compare_comics(comic_one, comic_two);
 }
 
-/*
-DISABLED UNTIL FIXED
 #[test]
 fn get_random_comic_test() {
     let random_comic: Comic = Comic::get_random_comic().unwrap();
-    println!("{:?}", random_comic);
     let control_comic: Comic = Comic::get_comic(random_comic.number).unwrap();
 
-    // Make sure all fields are the same
-    assert_eq!(random_comic.title, control_comic.title);
-    assert_eq!(random_comic.url, control_comic.url);
-    assert_eq!(random_comic.img_url, control_comic.img_url);
-    assert_eq!(random_comic.alt_text, control_comic.alt_text);
-    assert_eq!(random_comic.number, control_comic.number);
-    assert_eq!(random_comic.date, control_comic.date);
+    compare_comics(random_comic, control_comic);
 }
-*/
 
 #[test]
 #[should_panic]
@@ -73,4 +60,14 @@ fn numbered_comic_higher_test() {
 /// Test for a negative numbered comic, should fail
 fn numbered_comic_lower_test() {
     let _test_comic: Comic = Comic::get_comic(-1).unwrap();
+}
+
+fn compare_comics(comic_one: Comic, comic_two: Comic) {
+    assert_eq!(comic_one.title, comic_two.title);
+    assert_eq!(comic_one.url, comic_two.url);
+    assert_eq!(comic_one.img_url, comic_two.img_url);
+    assert_eq!(comic_one.alt_text, comic_two.alt_text);
+    assert_eq!(comic_one.number, comic_two.number);
+    assert_eq!(comic_one.date, comic_two.date);
+    assert_eq!(format!("{:?}", comic_one), format!("{:?}", comic_two));
 }
