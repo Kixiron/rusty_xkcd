@@ -51,6 +51,14 @@ The `Comic` struct contains both the static methods for getting an xkcd comic
 (`get_comic()`, etc.),
 as well as the comic data.
 
+Comic data is stored in the following format:  
+`title` The title of the xkcd comic  
+`url` The url of the xkcd comic  
+`img_url` The image url of the xkcd comic  
+`alt_text` The alternate/tooltip text of the xkcd comic  
+`number` The number of the xkcd comic  
+`date` The date that the xkcd comic was published  
+
 # Coming Soon
 
 [Explain Xkcd](https://www.explainxkcd.com)  
