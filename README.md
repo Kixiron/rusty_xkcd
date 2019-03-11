@@ -1,7 +1,7 @@
 # Rusty Xkcd
 
 [![Build Status](https://travis-ci.org/Kixiron/rusty_xkcd.svg?branch=master)](https://travis-ci.org/Kixiron/rusty_xkcd)
-[![Docs.rs](https://docs.rs/chrono/badge.svg)](https://docs.rs/rusty_xkcd/0.1.0/rusty_xkcd)
+[![Docs.rs](https://docs.rs/rusty_xkcd/badge.svg)](https://docs.rs/rusty_xkcd/0.1.0/rusty_xkcd)
 [![Crates.io](https://img.shields.io/crates/v/rusty_xkcd.svg)](https://crates.io/crates/rusty_xkcd)
 [![License](https://img.shields.io/github/license/kixiron/rusty_xkcd.svg)](https://github.com/Kixiron/rusty_xkcd/blob/master/LICENSE)
 
