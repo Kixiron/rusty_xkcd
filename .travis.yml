@@ -10,14 +10,12 @@ matrix:
 cache: cargo
 install:
   - cargo build
+  - cargo update
   - rustup component add rustfmt
   - rustup component add clippy
-  - cargo install cargo-kcov
 script:
   - cargo fmt -- --check --verbose
   - cargo clippy --all-targets
+  - cargo check
   - cargo build --verbose --all
   - cargo test --verbose --all
-  - cargo bench --verbose
-after_script:
- - cargo kcov --lib --release --coveralls

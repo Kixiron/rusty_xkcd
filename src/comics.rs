@@ -85,7 +85,7 @@ impl Comic {
 impl Comic {
     /// # Get Random Comic
     /// Fetches a random xkcd comic
-    /// 
+    ///
     /// ## Usage
     /// ```rust
     /// # use rusty_xkcd::Comic;
