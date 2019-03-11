@@ -3,11 +3,7 @@ extern crate rand;
 extern crate reqwest;
 extern crate serde_json;
 
-use super::Error;
-
-const json_url: str = "http://xkcd.com/{}/info.0.json";
-const newest_url: str = "http://xkcd.com/info.0.json";
-const comic_url: str = "http://xkcd.com/{}";
+use super::Error
 
 /// # Comic
 /// The data struct for xkcd comics
@@ -54,7 +50,7 @@ impl Comic {
             Err(Error::InvalidNumber(comic_num))?;
         }
 
-        let xkcd_url: String = format!(&json_url, comic_num); // Form url
+        let xkcd_url: String = format!("http://xkcd.com/{}/info.0.json", comic_num); // Form url
 
         // Request and return comic (Or any error that occured)
         match request_comic(&xkcd_url) {
@@ -78,7 +74,7 @@ impl Comic {
     /// ```
     pub fn get_latest_comic() -> Result<Comic, Error> {
         // Request and return the newest comic
-        match request_comic(&newest_url) {
+        match request_comic("http://xkcd.com/info.0.json") {
             Ok(data) => Ok(data),
             Err(e) => Err(e),
         }
@@ -167,7 +163,7 @@ fn parse_comic(raw_json: &str) -> Comic {
     // Build and return the comic
     Comic {
         title: value["title"].as_str().unwrap().to_string(),
-        url: format!(&comic_url, num),
+        url: format!("http://xkcd.com/{}", num),
         img_url: value["img"].as_str().unwrap().to_string(),
         alt_text: value["alt"].as_str().unwrap().to_string(),
         number: num,
@@ -202,7 +198,7 @@ fn parse_comic(raw_json: &str) -> Comic {
 /// assert_eq!(latest_number, latest_comic.number);
 /// ````
 fn get_latest_comic_number() -> Result<i32, Error> {
-    match request_comic(&newest_url) {
+    match request_comic("http://xkcd.com/info.0.json") {
         Ok(data) => Ok(data.number),
         Err(e) => Err(e),
     }
