@@ -6,7 +6,7 @@
 //! [![Build Status](https://travis-ci.org/Kixiron/rusty_xkcd.svg?branch=master)](https://travis-ci.org/Kixiron/rusty_xkcd)
 //! [![License](https://img.shields.io/github/license/kixiron/rusty_xkcd.svg)](https://github.com/Kixiron/rusty_xkcd/blob/master/LICENSE)
 //! [![Language](https://img.shields.io/github/languages/top/kixiron/rusty_xkcd.svg)](https://github.com/Kixiron/rusty_xkcd)
-//! [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
+//! [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/Kixiron/rusty_xkcd/pull/new/master)
 //!
 //! Rusty Xkcd is an API wrapper for the [Xkcd API](https://xkcd.com/json.html).
 //! It aims to give full access to the Xkcd API with maximum preformance, control, and reliability.
