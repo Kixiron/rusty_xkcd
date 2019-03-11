@@ -57,7 +57,8 @@
 //! as well as the comic data.
 //! 
 //! # Coming Soon
-//! [Explain Xkcd](https://www.explainxkcd.com)
+//! 
+//! [Explain Xkcd](https://www.explainxkcd.com)  
 //! [What If](https://what-if.xkcd.com)
 //!
 
