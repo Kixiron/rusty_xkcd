@@ -13,7 +13,7 @@ install:
   - cargo update
   - rustup component add rustfmt
   - rustup component add clippy
-  - cargo install cargo-kcov
+  - cargo install cargo-kcov --force
 script:
   - cargo fmt --verbose -- --check
   - cargo clippy --all-targets --verbose
