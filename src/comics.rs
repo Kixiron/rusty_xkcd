@@ -3,7 +3,7 @@ extern crate rand;
 extern crate reqwest;
 extern crate serde_json;
 
-use super::Error
+use super::Error;
 
 /// # Comic
 /// The data struct for xkcd comics
