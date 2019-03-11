@@ -9,7 +9,8 @@ matrix:
     - rust: nightly
 cache: cargo
 install:
-  - cargo build
+  - rustup update
+  - rustup self update
   - cargo update
   - rustup component add rustfmt
   - rustup component add clippy
