@@ -5,9 +5,9 @@ extern crate serde_json;
 
 use super::Error;
 
-const json_url = "http://xkcd.com/{}/info.0.json";
-const newest_url = "http://xkcd.com/info.0.json";
-const comic_url = "http://xkcd.com/{}";
+const json_url: str = "http://xkcd.com/{}/info.0.json";
+const newest_url: str = "http://xkcd.com/info.0.json";
+const comic_url: str = "http://xkcd.com/{}";
 
 /// # Comic
 /// The data struct for xkcd comics
