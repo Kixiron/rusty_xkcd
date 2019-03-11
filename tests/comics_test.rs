@@ -12,7 +12,7 @@ fn get_comic_test() {
     // Create control comic
     let control_comic: Comic = Comic {
         title: String::from("Designated Drivers"),
-        url: String::from("http://xkcd.com/589/"),
+        url: String::from("http://xkcd.com/589"),
         img_url: String::from("https://imgs.xkcd.com/comics/designated_drivers.png"),
         alt_text: String::from("Calling a cab means cutting into beer money."),
         number: 589,

@@ -4,7 +4,10 @@
 //! [![Docs.rs](https://docs.rs/rusty_xkcd/badge.svg)](https://docs.rs/rusty_xkcd)
 //! [![Build Status](https://travis-ci.org/Kixiron/rusty_xkcd.svg?branch=master)](https://travis-ci.org/Kixiron/rusty_xkcd)
 //! [![License](https://img.shields.io/github/license/kixiron/rusty_xkcd.svg)](https://github.com/Kixiron/rusty_xkcd/blob/master/LICENSE)
-//! [![GitHub top language](https://img.shields.io/github/languages/top/kixiron/rusty_xkcd.svg)](https://github.com/Kixiron/rusty_xkcd)
+//! [![Language](https://img.shields.io/github/languages/top/kixiron/rusty_xkcd.svg)](https://github.com/Kixiron/rusty_xkcd)
+//! [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
+//! [![GitLab](https://img.shields.io/badge/GitLab-Mirror-Orange.svg)](https://gitlab.com/Kixiron/rusty_xkcd)
+//!
 //! Rusty Xkcd is an API wrapper for the [Xkcd API](https://xkcd.com/json.html).
 //! It aims to give full access to the Xkcd API with maximum preformance, control, and reliability.
 //!
@@ -56,11 +59,18 @@
 //! (`get_comic()`, etc.),
 //! as well as the comic data.
 //!
+//! Comic data is stored in the following format:  
+//! `title` The title of the xkcd comic  
+//! `url` The url of the xkcd comic  
+//! `img_url` The image url of the xkcd comic  
+//! `alt_text` The alternate/tooltip text of the xkcd comic  
+//! `number` The number of the xkcd comic  
+//! `date` The date that the xkcd comic was published  
+//!
 //! # Coming Soon
 //!
 //! [Explain Xkcd](https://www.explainxkcd.com)  
 //! [What If](https://what-if.xkcd.com)
-//!
 
 #[macro_use]
 extern crate quick_error;

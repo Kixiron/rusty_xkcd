@@ -6,7 +6,7 @@ extern crate serde_json;
 use super::Error;
 
 /// # Comic
-/// The data struct for xkcd comics
+/// The struct containing all xkcd-comic related data and functions
 #[derive(Debug)]
 #[allow(dead_code)]
 pub struct Comic {
