@@ -15,7 +15,7 @@ install:
   - rustup component add clippy
 script:
   - cargo fmt -- --check --verbose
-  - cargo clippy --all-targets
-  - cargo check
+  - cargo clippy --all-targets --verbose
+  - cargo check --all-targets --verbose
   - cargo build --verbose --all
   - cargo test --verbose --all
