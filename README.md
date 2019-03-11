@@ -48,6 +48,5 @@ let comic = Comic::get_random_comic().unwrap();
 
 The `Comic` struct contains both the static methods for getting an xkcd comic
 (`get_comic()`, etc.),
-as well as the comic data. More detail on the comic struct can be found
-[here](./struct.Comic.html)
+as well as the comic data.
 
