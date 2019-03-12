@@ -1,28 +1,49 @@
 # rusty_xkcd GitLab CI script
 stages:
+  - install
   - build
+  - test
 
 rust-latest:
-  stage: build
+  stage: install
   image: rust:latest
   script:
     - rustup component add rustfmt
     - rustup component add clippy
+rust-latest:
+  stage: build
+  image: rust:latest
+  script:
+    - cargo build --verbose --all
+    - cargo test --verbose --all
+rust-latest:
+  stage: test
+  image: rust:latest
+  script:
+    - cargo test --verbose --all
     - cargo fmt --verbose -- --check
     - cargo clippy --all-targets --verbose
     - cargo check --all-targets --verbose
-    - cargo build --verbose --all
-    - cargo test --verbose --all
 
+rust-nightly:
+  stage: install
+  image: rustlang/rust:nightly
+  script:
+    - rustup component add +nightly rustfmt
+    - rustup component add +nightly clippy
+  allow_failure: true
 rust-nightly:
   stage: build
   image: rustlang/rust:nightly
   script:
-    - rustup component add rustfmt
-    - rustup component add clippy
+    - cargo build --verbose --all
+  allow_failure: true
+rust-nightly:
+  stage: test
+  image: rustlang/rust:nightly
+  script:
+    - cargo test --verbose --all
     - cargo fmt --verbose -- --check
     - cargo clippy --all-targets --verbose
     - cargo check --all-targets --verbose
-    - cargo build --verbose --all
-    - cargo test --verbose --all
   allow_failure: true
