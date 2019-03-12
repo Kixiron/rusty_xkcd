@@ -85,3 +85,7 @@ mod comics;
 /// ## Comics
 /// The module containing all comic logic and interfaces for rusty_xkcd
 pub use comics::Comic;
+
+mod explanation;
+pub use explanation::Explain;
+pub use explanation::Explanation;
