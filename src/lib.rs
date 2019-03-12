@@ -1,11 +1,11 @@
 // Copyright 2019 Kixiron
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -68,20 +68,6 @@
 //! let comic = Comic::get_random_comic().unwrap();
 //! ```
 //!
-//! ### The Comic Struct
-//!
-//! The `Comic` struct contains both the static methods for getting an xkcd comic
-//! (`get_comic()`, etc.),
-//! as well as the comic data.
-//!
-//! Comic data is stored in the following format:  
-//! `title` The title of the xkcd comic  
-//! `url` The url of the xkcd comic  
-//! `img_url` The image url of the xkcd comic  
-//! `alt_text` The alternate/tooltip text of the xkcd comic  
-//! `number` The number of the xkcd comic  
-//! `date` The date that the xkcd comic was published  
-//!
 //! # Coming Soon
 //!
 //! [Explain Xkcd](https://www.explainxkcd.com)  
@@ -99,8 +85,6 @@ pub use errors::Error;
 /// The module containing all comic logic and interfaces for rusty_xkcd
 mod comics;
 pub use comics::Comic;
-pub use comics::Comics;
-
 
 mod explanation;
 pub use explanation::Explanation;
