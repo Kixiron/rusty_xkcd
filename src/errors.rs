@@ -36,7 +36,7 @@ quick_error! {
         ///     Err(e) => println!("{}", Error::RequestError(e.to_string())),
         /// }
         /// ```
-        RequestError(error: String) { // TODO: Add &str refrence with lifetime
+        RequestError(error: String) { // TODO: Add &str reference with lifetime
             description("Xkcd request Error")
             display(r#"Xkcd request error: {}"#, error)
         }

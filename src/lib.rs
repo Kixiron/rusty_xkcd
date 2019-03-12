@@ -10,7 +10,7 @@
 //! [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/Kixiron/rusty_xkcd/pull/new/master)
 //!
 //! Rusty Xkcd is an API wrapper for the [Xkcd API](https://xkcd.com/json.html).
-//! It aims to give full access to the Xkcd API with maximum preformance, control, and reliability.
+//! It aims to give full access to the Xkcd API with maximum performance, control, and reliability.
 //!
 //! ## Xkcd Comics
 //!

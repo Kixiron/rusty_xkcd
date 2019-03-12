@@ -52,7 +52,7 @@ impl Comic {
 
         let xkcd_url: String = format!("http://xkcd.com/{}/info.0.json", comic_num); // Form url
 
-        // Request and return comic (Or any error that occured)
+        // Request and return comic (Or any error that occurred)
         match request_comic(&xkcd_url) {
             Ok(data) => Ok(data),
             Err(e) => Err(e),
@@ -81,7 +81,6 @@ impl Comic {
     }
 }
 
-// NOT WORKING
 impl Comic {
     /// # Get Random Comic
     /// Fetches a random xkcd comic
@@ -106,7 +105,6 @@ impl Comic {
 
 /// # Request Comic
 /// Requests a comic via formed url
-/// Only accessable within `comics.rs`
 ///
 /// ## Usage
 /// ```rust
@@ -153,7 +151,7 @@ fn parse_comic(raw_json: &str) -> Comic {
         value["day"].as_str().unwrap().to_string(),
         value["year"].as_str().unwrap().to_string(),
     );
-    // Ghost comic_date into a Date
+    // Shadow comic_date into a Date
     let comic_date: Date<Utc> = Utc.ymd(
         comic_date.2.parse::<i32>().unwrap(),
         comic_date.0.parse::<u32>().unwrap(),
@@ -173,7 +171,6 @@ fn parse_comic(raw_json: &str) -> Comic {
 
 /// # Get Latest Comic Number
 /// Gets the number of the most recent xkcd comic.
-/// Only accessable within `comics.rs`
 ///
 /// ## Usage
 ///

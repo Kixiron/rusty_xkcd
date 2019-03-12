@@ -7,7 +7,7 @@ use rusty_xkcd::Comic;
 fn get_comic_test() {
     use chrono::prelude::*;
 
-    // Aquire test comic
+    // Acquire test comic
     let test_comic: Comic = Comic::get_comic(589).unwrap();
     // Create control comic
     let control_comic: Comic = Comic {
