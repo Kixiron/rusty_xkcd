@@ -88,10 +88,3 @@ pub use comics::Comic;
 
 mod explanation;
 pub use explanation::Explanation;
-
-trait InvertComic {
-    fn explain(&self) -> Result<Explanation, Error>;
-}
-trait InvertExplanation {
-    fn get_comic(&self) -> Result<Comic, Error>;
-}

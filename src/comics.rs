@@ -3,7 +3,7 @@ extern crate rand;
 extern crate reqwest;
 extern crate serde_json;
 
-use super::{Error, Explanation, InvertComic};
+use super::{Error, Explanation};
 
 /// # Comic
 /// The struct containing all xkcd-comic related data and functions
@@ -99,9 +99,50 @@ impl Comic {
     }
 }
 
-impl InvertComic for Comic {
+/// # Comics Trait
+/// A collection of methods to get data from a comic
+trait Comics {
+    /// Fetches the `Explanation` of the current comic
+    fn explain(&self) -> Result<Explanation, Error>;
+    /// Fetches the current comic's title
+    fn get_title(&self) -> String;
+    /// Fetches the current comic's url
+    fn get_url(&self) -> String;
+    /// Fetches the current comic's image url
+    fn get_img_url(&self) -> String;
+    /// Fetches the current comic's alt/tooltip text
+    fn get_alt_text(&self) -> String;
+    /// Fetches the current comic's number
+    fn get_number(&self) -> i32;
+    /// Fetches the current comic's date
+    fn get_date(&self) -> chrono::Date<chrono::Utc>;
+}
+// Implementing the Comics traits for the Comic struct
+impl Comics for Comic {
     fn explain(&self) -> Result<Explanation, Error> {
         Explanation::explain(self.number)
+    }
+    fn get_title(&self) -> String {
+        let x: String = (*self.title).to_string();
+        x
+    }
+    fn get_url(&self) -> String {
+        let x: String = (*self.url).to_string();
+        x
+    }
+    fn get_img_url(&self) -> String {
+        let x: String = (*self.img_url).to_string();
+        x
+    }
+    fn get_alt_text(&self) -> String {
+        let x: String = (*self.alt_text).to_string();
+        x
+    }
+    fn get_number(&self) -> i32 {
+        self.number
+    }
+    fn get_date(&self) -> chrono::Date<chrono::Utc> {
+        self.date
     }
 }
 

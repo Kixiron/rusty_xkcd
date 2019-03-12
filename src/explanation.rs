@@ -1,7 +1,7 @@
 extern crate reqwest;
 extern crate scraper;
 
-use super::{Comic, Error, InvertExplanation};
+use super::{Comic, Error};
 
 // Display url: https://www.explainxkcd.com/wiki/index.php/{}
 // Random url: https://www.explainxkcd.com/wiki/index.php/Special:Random
@@ -25,10 +25,32 @@ impl Explanation {
     }
 }
 
-impl InvertExplanation for Explanation {
+impl Explain for Explanation {
     fn get_comic(&self) -> Result<Comic, Error> {
         Comic::get_comic(self.xkcd_num)
     }
+    fn get_explanation(&self) -> String {
+        let x: String = (*self.explanation).to_string();
+        x
+    }
+    fn get_explanation_url(&self) -> String {
+        let x: String = (*self.explanation_url).to_string();
+        x
+    }
+    fn get_xkcd_url(&self) -> String {
+        let x: String = (*self.xkcd_url).to_string();
+        x
+    }
+    fn get_xkcd_number(&self) -> i32 {
+        self.xkcd_num
+    }
+}
+trait Explain {
+    fn get_comic(&self) -> Result<Comic, Error>;
+    fn get_explanation(&self) -> String;
+    fn get_explanation_url(&self) -> String;
+    fn get_xkcd_url(&self) -> String;
+    fn get_xkcd_number(&self) -> i32;
 }
 
 fn fetch_explanation(num: i32) -> Result<Explanation, Error> {
