@@ -30,4 +30,8 @@ rust-nightly:
   allow_failure: true
   only:
     - master
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 59fd46f99dc3968e78cb10d0ddbba31e8da0b07a
