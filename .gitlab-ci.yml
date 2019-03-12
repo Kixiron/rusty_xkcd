@@ -13,6 +13,8 @@ rust-latest:
     - cargo check --all-targets --verbose
     - cargo build --verbose --all
     - cargo test --verbose --all
+  only:
+    - master
 
 rust-nightly:
   stage: build
@@ -26,3 +28,6 @@ rust-nightly:
     - cargo build --verbose --all
     - cargo test --verbose --all
   allow_failure: true
+  only:
+    - master
+
