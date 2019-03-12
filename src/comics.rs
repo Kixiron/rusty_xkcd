@@ -5,7 +5,7 @@ extern crate serde_json;
 
 use super::{Error, Explanation};
 
-/// The struct containing all xkcd-comic related data and functions
+/// The struct containing all xkcd-comic related data and methods
 ///
 /// ## Usage
 /// There are three main ways to get a fully primed `Comic`
