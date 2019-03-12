@@ -12,8 +12,8 @@ install:
   - rustup update
   - rustup self update
   - cargo update
-  - rustup component add rustfmt
-  - rustup component add clippy
+  - rustup component add rustfmt || rustup component add rustfmt --toolchain nightly || cargo install --git https://github.com/rust-lang/rustfmt/ --force rustfmt
+  - rustup component add clippy || rustup component add clippy --toolchain=nightly || cargo install --git https://github.com/rust-lang/rust-clippy/ --force clippy
 script:
   - cargo fmt --verbose -- --check
   - cargo clippy --all-targets --verbose
