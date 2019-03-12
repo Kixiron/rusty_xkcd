@@ -32,7 +32,7 @@ impl Explanation {
         let x: String = (*self.explanation).to_string();
         x
     }
-    
+
     pub fn get_explanation_url(&self) -> String {
         let x: String = (*self.explanation_url).to_string();
         x
