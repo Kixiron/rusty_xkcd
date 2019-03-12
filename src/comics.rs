@@ -10,21 +10,33 @@ use super::{Error, Explanation};
 /// ## Usage
 /// There are three main ways to get a fully primed `Comic`
 ///
-/// Get the comic by number
+/// #### Get the comic by number
 /// ```rust
 /// # extern crate rusty_xkcd;
 /// # use rusty_xkcd::Comic;
 /// let comic = get_comic(100).unwrap(); // Get a comic by it's number
 /// ```
+/// However, getting a comic does have limits, as requesting a comic
+/// that does not exist will throw an `InvalidNumber` error
+/// ```should_panic
+/// # extern crate rusty_xkcd;
+/// # use rusty_xkcd::Comic;
+/// let comic = get_comic(-1).unwrap(); // Too low!
+/// ```
+/// ```should_panic
+/// # extern crate rusty_xkcd;
+/// # use rusty_xkcd::Comic;
+/// let comic = get_comic(999_999).unwrap(); // Too high!
+/// ```
 ///
-/// Get the latest comic
+/// #### Get the latest comic
 /// ```rust
 /// # extern crate rusty_xkcd;
 /// # use rusty_xkcd::Comic;
 /// let comic = get_latest_comic().unwrap(); // Get the latest comic
 /// ```
 ///
-/// Get a random comic
+/// #### Get a random comic
 /// ```rust
 /// # extern crate rusty_xkcd;
 /// # use rusty_xkcd::Comic;
@@ -47,6 +59,28 @@ use super::{Error, Explanation};
 /// # using rusty_xkcd::Comic;
 /// let comic_number = get_random_comic().unwrap().get_number(); // Get the latest comic's number
 /// ```
+///
+/// ## Errors
+/// There are two errors that can be thrown while acquiring a comic
+///
+/// #### Invalid Number
+/// An invalid number error comes from your software or the end user requesting an xkcd comic with a
+/// number that is either less than or equal to zero or greater than the newest xkcd comic's number.
+/// For those who speak code more fluently than english, here's a snippet:
+/// ```rust
+/// # let input_number = 0;
+/// # let latest_comic_number = 0;
+/// # fn throw_error() {
+/// #     println!("Thanks for looking at the source code!");
+/// # }
+/// if input_number <= 0 || input_number > latest_comic_number {
+///     throw_error();
+/// }
+/// ```
+///
+/// #### Request Error
+/// A request error can happen for any number of reasons, but all are related to some sort of failure
+/// in querying the xkcd api
 #[derive(Debug)]
 #[allow(dead_code)]
 pub struct Comic {
