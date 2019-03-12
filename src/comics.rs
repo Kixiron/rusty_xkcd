@@ -101,7 +101,7 @@ impl Comic {
 
 /// # Comics Trait
 /// A collection of methods to get data from a comic
-trait Comics {
+pub trait Comics {
     /// Fetches the `Explanation` of the current comic
     fn explain(&self) -> Result<Explanation, Error>;
     /// Fetches the current comic's title

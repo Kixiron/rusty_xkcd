@@ -81,10 +81,12 @@ mod errors;
 /// The module containing all errors for rusty_xkcd
 pub use errors::Error;
 
-mod comics;
 /// ## Comics
 /// The module containing all comic logic and interfaces for rusty_xkcd
+mod comics;
 pub use comics::Comic;
+pub use comics::Comics;
+
 
 mod explanation;
 pub use explanation::Explanation;

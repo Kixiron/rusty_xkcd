@@ -1,7 +1,7 @@
 extern crate chrono;
 extern crate rusty_xkcd;
 
-use rusty_xkcd::Comic;
+use rusty_xkcd::{Comic, Comics};
 
 #[test]
 fn get_comic_test() {
@@ -60,6 +60,28 @@ fn numbered_comic_higher_test() {
 /// Test for a negative numbered comic, should fail
 fn numbered_comic_lower_test() {
     let _test_comic: Comic = Comic::get_comic(-1).unwrap();
+}
+
+#[test]
+/// Test for Comic traits
+fn comic_traits_test() {
+    use chrono::prelude::*;
+
+    let control_comic: Comic = Comic {
+        title: String::from("Designated Drivers"),
+        url: String::from("http://xkcd.com/589"),
+        img_url: String::from("https://imgs.xkcd.com/comics/designated_drivers.png"),
+        alt_text: String::from("Calling a cab means cutting into beer money."),
+        number: 589,
+        date: Utc.ymd(2009, 5, 27),
+    };
+
+    assert_eq!(control_comic.title, control_comic.get_title());
+    assert_eq!(control_comic.url, control_comic.get_url());
+    assert_eq!(control_comic.img_url, control_comic.get_img_url());
+    assert_eq!(control_comic.alt_text, control_comic.get_alt_text());
+    assert_eq!(control_comic.number, control_comic.get_number());
+    assert_eq!(control_comic.date, control_comic.get_date());
 }
 
 fn compare_comics(comic_one: Comic, comic_two: Comic) {
