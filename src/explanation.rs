@@ -1,6 +1,11 @@
+extern crate reqwest;
 extern crate scraper;
 
 use super::{Comic, Error, InvertExplanation};
+
+// Display url: https://www.explainxkcd.com/wiki/index.php/{}
+// Random url: https://www.explainxkcd.com/wiki/index.php/Special:Random
+// Api url: https://www.explainxkcd.com/wiki/api.php?action=parse&format=json&pageid={}&utf8=1
 
 #[derive(Debug)]
 pub struct Explanation {
@@ -16,7 +21,7 @@ impl Explanation {
     }
 
     pub fn explain(num: i32) -> Result<Explanation, Error> {
-        fetch_explanation(&url)
+        fetch_explanation(num)
     }
 }
 
@@ -26,9 +31,13 @@ impl InvertExplanation for Explanation {
     }
 }
 
-fn fetch_explanation(url: &str) -> Result<Explanation, Error> {
-    // Get html
-    parse_html("test")
+fn fetch_explanation(num: i32) -> Result<Explanation, Error> {
+    let url: String = format!("https://www.explainxkcd.com/wiki/index.php/{}", num);
+    let body: String = match reqwest::get(&url) {
+        Ok(mut res) => res.text().unwrap(),
+        Err(e) => Err(Error::RequestError(e.to_string()))?,
+    };
+    parse_html(&body)
 }
 
 fn parse_html(html: &str) -> Result<Explanation, Error> {

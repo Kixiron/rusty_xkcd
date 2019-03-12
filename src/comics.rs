@@ -132,7 +132,7 @@ impl InvertComic for Comic {
 fn request_comic(url: &str) -> Result<Comic, Error> {
     let body: String = match reqwest::get(url) {
         Ok(mut res) => res.text().unwrap(),
-        Err(e) => return Err(Error::RequestError(e.to_string())),
+        Err(e) => Err(Error::RequestError(e.to_string()))?,
     };
     Ok(parse_comic(&body))
 }

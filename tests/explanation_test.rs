@@ -1,6 +1,6 @@
 extern crate rusty_xkcd;
 
-use rusty_xkcd::{Comic, Explain, Explanation};
+use rusty_xkcd::{Comic, Explanation};
 
 #[test]
 fn explication_from_str_test() {}
