@@ -3,7 +3,7 @@ extern crate rand;
 extern crate reqwest;
 extern crate serde_json;
 
-use super::{Error, Explanation};
+use super::{Error, Explanation, InvertComic};
 
 /// # Comic
 /// The struct containing all xkcd-comic related data and functions
@@ -58,9 +58,7 @@ impl Comic {
             Err(e) => Err(e),
         }
     }
-}
 
-impl Comic {
     /// # Get Latest Comic
     /// Fetches the latest xkcd comic.
     ///
@@ -79,9 +77,7 @@ impl Comic {
             Err(e) => Err(e),
         }
     }
-}
 
-impl Comic {
     /// # Get Random Comic
     /// Fetches a random xkcd comic
     ///
@@ -100,6 +96,12 @@ impl Comic {
         let comic_num: i32 = thread_rng().gen_range(1, latest_comic);
 
         Comic::get_comic(comic_num)
+    }
+}
+
+impl InvertComic for Comic {
+    fn explain(&self) -> Result<Explanation, Error> {
+        Explanation::explain(self.number)
     }
 }
 
@@ -198,17 +200,5 @@ fn get_latest_comic_number() -> Result<i32, Error> {
     match request_comic("http://xkcd.com/info.0.json") {
         Ok(data) => Ok(data.number),
         Err(e) => Err(e),
-    }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-pub trait Comics {
-    fn get_comic(&self) -> Result<Comic, Error>;
-}
-
-impl Comics for Explanation {
-    fn get_comic(&self) -> Result<Comic, Error> {
-        Comic::get_comic(self.xkcd_num)
     }
 }

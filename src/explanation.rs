@@ -1,6 +1,6 @@
 extern crate scraper;
 
-use super::{Comic, Error};
+use super::{Comic, Error, InvertExplanation};
 
 #[derive(Debug)]
 pub struct Explanation {
@@ -14,11 +14,15 @@ impl Explanation {
     pub fn get_xkcd(&self) -> Result<Comic, Error> {
         Comic::get_comic(self.xkcd_num)
     }
+
+    pub fn explain(num: i32) -> Result<Explanation, Error> {
+        fetch_explanation(&url)
+    }
 }
 
-impl Explanation {
-    pub fn explain(url: &str) -> Result<Explanation, Error> {
-        fetch_explanation(&url)
+impl InvertExplanation for Explanation {
+    fn get_comic(&self) -> Result<Comic, Error> {
+        Comic::get_comic(self.xkcd_num)
     }
 }
 
@@ -34,16 +38,4 @@ fn parse_html(html: &str) -> Result<Explanation, Error> {
         xkcd_url: String::from("test"),
         xkcd_num: 10,
     })
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-pub trait Explain {
-    fn explain(&self) -> Result<Explanation, Error>;
-}
-
-impl Explain for Comic {
-    fn explain(&self) -> Result<Explanation, Error> {
-        fetch_explanation(&self.url)
-    }
 }
