@@ -54,14 +54,26 @@ fn fetch_explanation(num: i32) -> Result<Explanation, Error> {
         Ok(mut res) => res.text().unwrap(),
         Err(e) => Err(Error::RequestError(e.to_string()))?,
     };
-    parse_html(&body)
+    Ok(parse_html(&body, num))
 }
 
-fn parse_html(html: &str) -> Result<Explanation, Error> {
-    Ok(Explanation {
-        explanation: String::from("test"),
-        explanation_url: String::from("test"),
-        xkcd_url: String::from("test"),
-        xkcd_num: 10,
-    })
+fn parse_html(html: &str, num: i32) -> Explanation {
+    use scraper::*;
+
+    let parsed_html: Html = Html::parse_document(html);
+
+    let explanation: String = {
+        // Fetch explanation
+        String::from("Placeholder")
+    };
+    let explanation_url: String = format!("https://www.explainxkcd.com/wiki/index.php/{}", num);
+    let xkcd_url: String = format!("https://xkcd.com/{}", num);
+    let xkcd_num: i32 = num;
+
+    Explanation {
+        explanation,
+        explanation_url,
+        xkcd_url,
+        xkcd_num,
+    }
 }

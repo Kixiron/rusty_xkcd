@@ -86,9 +86,9 @@ use super::{Error, Explanation};
 pub struct Comic {
     /// Title of the comic
     pub title: String,
-    /// Url of the comic
+    /// Url of the comic `https://xkcd.com/{comic_number}`
     pub url: String,
-    /// Image Url of tht comic
+    /// Image Url of tht comic `https://imgs.xkcd.com/comics/{image_name}.png`
     pub img_url: String,
     /// Alt text or tooltip text of the comic
     pub alt_text: String,
@@ -219,7 +219,7 @@ impl Comic {
 /// # fn request_comic(url: &str) -> Result<Comic, Error> {
 /// #     Ok(Comic {
 /// #         title: String::from("Designated Drivers"),
-/// #         url: String::from("http://xkcd.com/589/"),
+/// #         url: String::from("http://xkcd.com/589"),
 /// #         img_url: String::from("https://imgs.xkcd.com/comics/designated_drivers.png"),
 /// #         alt_text: String::from("Calling a cab means cutting into beer money."),
 /// #         number: 589,
