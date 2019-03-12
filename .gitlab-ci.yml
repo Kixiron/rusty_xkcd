@@ -30,4 +30,4 @@ rust-nightly:
   allow_failure: true
   only:
     - master
-
+  

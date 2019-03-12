@@ -200,3 +200,15 @@ fn get_latest_comic_number() -> Result<i32, Error> {
         Err(e) => Err(e),
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+pub trait Comics {
+    fn get_comic(&self) -> Result<Comic, Error>;
+}
+
+impl Comics for Explanation {
+    fn get_comic(&self) -> Result<Comic, Error> {
+        Comic::get_comic(self.xkcd_num)
+    }
+}
