@@ -29,18 +29,15 @@ impl Explanation {
     }
 
     pub fn get_explanation(&self) -> String {
-        let x: String = (*self.explanation).to_string();
-        x
+        (*self.explanation).to_string()
     }
 
     pub fn get_explanation_url(&self) -> String {
-        let x: String = (*self.explanation_url).to_string();
-        x
+        (*self.explanation_url).to_string()
     }
 
     pub fn get_xkcd_url(&self) -> String {
-        let x: String = (*self.xkcd_url).to_string();
-        x
+        (*self.xkcd_url).to_string()
     }
 
     pub fn get_xkcd_number(&self) -> i32 {
@@ -52,7 +49,7 @@ fn fetch_explanation(num: i32) -> Result<Explanation, Error> {
     let url: String = format!("https://www.explainxkcd.com/wiki/index.php/{}", num);
     let body: String = match reqwest::get(&url) {
         Ok(mut res) => res.text().unwrap(),
-        Err(e) => Err(Error::RequestError(e.to_string()))?,
+        Err(e) => Err(Error::Request::new(&e.to_string()))?,
     };
     println!("{:?}", body);
     Ok(parse_html(&body, num))

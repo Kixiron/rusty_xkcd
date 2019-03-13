@@ -64,10 +64,10 @@ use super::{Error, Explanation};
 /// There are two errors that can be thrown while acquiring a comic
 ///
 /// #### Invalid Number
-/// An invalid number error comes from your software or the end user requesting an xkcd comic with a
-/// number that is either less than or equal to zero or greater than the newest xkcd comic's number.
-/// For those who speak code more fluently than english, here's a snippet:
-/// ```rust
+/// An invalid number error comes from your software or the end user requesting
+/// an xkcd comic with a number that is either less than or equal to zero or
+/// greater than the newest xkcd comic's number. For those who speak code more
+/// fluently than english, here's a snippet: ```rust
 /// # let input_number = 0;
 /// # let latest_comic_number = 0;
 /// # fn throw_error() {
@@ -79,8 +79,8 @@ use super::{Error, Explanation};
 /// ```
 ///
 /// #### Request Error
-/// A request error can happen for any number of reasons, but all are related to some sort of failure
-/// in querying the xkcd api
+/// A request error can happen for any number of reasons, but all are related to
+/// some sort of failure in querying the xkcd api
 #[derive(Debug)]
 pub struct Comic {
     /// Title of the comic
@@ -111,7 +111,7 @@ impl Comic {
     pub fn get_comic(comic_num: i32) -> Result<Comic, Error> {
         // If requested comic's number is less than or equal to zero, error
         if comic_num <= 0 {
-            Err(Error::InvalidNumber(comic_num))?;
+            Err(Error::Number::new(comic_num))?;
         }
 
         // Get newest comic's number
@@ -119,7 +119,7 @@ impl Comic {
 
         // If the requested number is greater than the newest or lower than zero, error
         if comic_num > newest_comic_num {
-            Err(Error::InvalidNumber(comic_num))?;
+            Err(Error::Number::new(comic_num))?;
         }
 
         let xkcd_url: String = format!("http://xkcd.com/{}/info.0.json", comic_num); // Form url
@@ -175,26 +175,22 @@ impl Comic {
 
     /// Fetches the current comic's title
     pub fn get_title(&self) -> String {
-        let x: String = (*self.title).to_string();
-        x
+        (*self.title).to_string()
     }
 
     /// Fetches the current comic's url
     pub fn get_url(&self) -> String {
-        let x: String = (*self.url).to_string();
-        x
+        (*self.url).to_string()
     }
 
     /// Fetches the current comic's image url
     pub fn get_img_url(&self) -> String {
-        let x: String = (*self.img_url).to_string();
-        x
+        (*self.img_url).to_string()
     }
 
     /// Fetches the current comic's alt/tooltip text
     pub fn get_alt_text(&self) -> String {
-        let x: String = (*self.alt_text).to_string();
-        x
+        (*self.alt_text).to_string()
     }
 
     /// Fetches the current comic's number
@@ -235,7 +231,7 @@ impl Comic {
 fn request_comic(url: &str) -> Result<Comic, Error> {
     let body: String = match reqwest::get(url) {
         Ok(mut res) => res.text().unwrap(),
-        Err(e) => Err(Error::RequestError(e.to_string()))?,
+        Err(e) => Err(Error::Request::new(&e.to_string()))?,
     };
     Ok(parse_comic(&body))
 }

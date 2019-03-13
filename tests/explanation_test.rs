@@ -4,15 +4,11 @@ use rusty_xkcd::Explanation;
 
 #[test]
 fn get_explanation_test() {
-
+    Explanation::explain(100).unwrap();
 }
 
 #[test]
-fn get_xkcd_test() {
-
-}
+fn get_xkcd_test() {}
 
 #[test]
-fn explanation_data_methods_test() {
-
-}
+fn explanation_data_methods_test() {}
