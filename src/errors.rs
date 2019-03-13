@@ -1,4 +1,5 @@
 quick_error! {
+    /// The module containing all errors for rusty_xkcd
     #[derive(Debug)]
     pub enum Error {
 
@@ -14,10 +15,10 @@ quick_error! {
         /// let number: i32 = get_number(); // Example function that returns an int
         /// match number {
         ///     1 => println!("The number is one!"),
-        ///     _ => println!("{}", Error::InvalidNumber(number)),
+        ///     _ => println!("{}", Error::Number(number)),
         /// }
         /// ```
-        InvalidNumber(number: i32) {
+        Number(number: i32) {
             description("Invalid xkcd num")
             display(r#"Invalid xkcd num: {}"#, number)
         }
@@ -29,14 +30,15 @@ quick_error! {
         /// ```rust
         /// # use rusty_xkcd::Error;
         /// # fn make_request() -> Result<String, Error> {
-        /// #     Ok(String::from("Sucessful Request!"))
+        /// #     Ok(String::from("Successful Request!"))
         /// # }
-        /// match make_request() { // Example request function
+        /// match make_request() {
+        ///     // Example request function
         ///     Ok(data) => println!("{}", data),
-        ///     Err(e) => println!("{}", Error::RequestError(e.to_string())),
+        ///     Err(e) => println!("{}", Error::Request(e.to_string())),
         /// }
         /// ```
-        RequestError(error: String) { // TODO: Add &str refrence with lifetime
+        Request(error: String) {
             description("Xkcd request Error")
             display(r#"Xkcd request error: {}"#, error)
         }

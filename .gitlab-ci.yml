@@ -9,20 +9,24 @@ rust-latest:
     - rustup component add rustfmt
     - rustup component add clippy
     - cargo fmt --verbose -- --check
-    - cargo clippy --all-targets --verbose
+    - cargo clippy --all-targets --all-features --verbose
     - cargo check --all-targets --verbose
     - cargo build --verbose --all
     - cargo test --verbose --all
+  only:
+    - master
 
 rust-nightly:
   stage: build
   image: rustlang/rust:nightly
   script:
-    - rustup component add rustfmt
-    - rustup component add clippy
+    - rustup component add rustfmt --toolchain nightly || cargo install --git https://github.com/rust-lang/rustfmt/ --force rustfmt
+    - rustup component add clippy --toolchain=nightly || cargo install --git https://github.com/rust-lang/rust-clippy/ --force clippy
     - cargo fmt --verbose -- --check
-    - cargo clippy --all-targets --verbose
+    - cargo clippy --all-targets --all-features --verbose
     - cargo check --all-targets --verbose
     - cargo build --verbose --all
     - cargo test --verbose --all
   allow_failure: true
+  only:
+    - master

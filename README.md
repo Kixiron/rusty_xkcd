@@ -10,7 +10,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/Kixiron/rusty_xkcd/pull/new/master)
 
 Rusty Xkcd is an API wrapper for the [Xkcd API](https://xkcd.com/json.html).
-It aims to give full access to the Xkcd API with maximum preformance, control, and reliability.
+It aims to give full access to the Xkcd API with maximum performance, control, and reliability.
 
 ## Xkcd Comics
 
@@ -19,7 +19,7 @@ Using rusty_xkcd to interact with the xkcd api is easy!
 To start, add this line to your `Cargo.toml`
 ```toml
 [dependencies]
-rusty_xkcd = "0.1.1"
+rusty_xkcd = "0.1.2"
 ```
 
 Then import the crate to wherever you want to use it
@@ -47,20 +47,6 @@ And finally, to get a random xkcd comic, use `get_random_comic()`
 ```rust
 let comic = Comic::get_random_comic().unwrap();
 ```
-
-### The Comic Struct
-
-The `Comic` struct contains both the static methods for getting an xkcd comic
-(`get_comic()`, etc.),
-as well as the comic data.
-
-Comic data is stored in the following format:  
-`title` The title of the xkcd comic  
-`url` The url of the xkcd comic  
-`img_url` The image url of the xkcd comic  
-`alt_text` The alternate/tooltip text of the xkcd comic  
-`number` The number of the xkcd comic  
-`date` The date that the xkcd comic was published  
 
 # Coming Soon
 

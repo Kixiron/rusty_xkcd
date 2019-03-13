@@ -1,3 +1,5 @@
+// Copyright 2019 Kixiron
+
 //! # Rusty Xkcd
 //!
 //! [![Crates.io](https://img.shields.io/crates/v/rusty_xkcd.svg)](https://crates.io/crates/rusty_xkcd)
@@ -7,10 +9,11 @@
 //! [![GitLab CI](https://img.shields.io/gitlab/pipeline/kixiron/rusty_xkcd.svg?branch=master&label=GitLab%20build)](https://gitlab.com/Kixiron/rusty_xkcd/pipelines)
 //! [![License](https://img.shields.io/github/license/kixiron/rusty_xkcd.svg)](https://github.com/Kixiron/rusty_xkcd/blob/master/LICENSE)
 //! [![Language](https://img.shields.io/github/languages/top/kixiron/rusty_xkcd.svg)](https://github.com/Kixiron/rusty_xkcd)
-//! [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/Kixiron/rusty_xkcd/pull/new/master)
+//! [![Pull Requests](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Kixiron/rusty_xkcd/pull/new/master)
 //!
 //! Rusty Xkcd is an API wrapper for the [Xkcd API](https://xkcd.com/json.html).
-//! It aims to give full access to the Xkcd API with maximum preformance, control, and reliability.
+//! It aims to give full access to the Xkcd API with maximum performance,
+//! control, and reliability.
 //!
 //! ## Xkcd Comics
 //!
@@ -19,7 +22,7 @@
 //! To start, add this line to your `Cargo.toml`
 //! ```toml
 //! [dependencies]
-//! rusty_xkcd = "0.1.1"
+//! rusty_xkcd = "0.1.2"
 //! ```
 //!
 //! Then import the crate to wherever you want to use it
@@ -54,20 +57,6 @@
 //! let comic = Comic::get_random_comic().unwrap();
 //! ```
 //!
-//! ### The Comic Struct
-//!
-//! The `Comic` struct contains both the static methods for getting an xkcd comic
-//! (`get_comic()`, etc.),
-//! as well as the comic data.
-//!
-//! Comic data is stored in the following format:  
-//! `title` The title of the xkcd comic  
-//! `url` The url of the xkcd comic  
-//! `img_url` The image url of the xkcd comic  
-//! `alt_text` The alternate/tooltip text of the xkcd comic  
-//! `number` The number of the xkcd comic  
-//! `date` The date that the xkcd comic was published  
-//!
 //! # Coming Soon
 //!
 //! [Explain Xkcd](https://www.explainxkcd.com)  
@@ -76,12 +65,8 @@
 #[macro_use]
 extern crate quick_error;
 
-/// ## Errors
-/// The module containing all errors for rusty_xkcd
 mod errors;
 pub use errors::Error;
 
-/// ## Comics
-/// The module containing all comic logic and interfaces for rusty_xkcd
 mod comics;
 pub use comics::Comic;

@@ -1,6 +1,6 @@
 [package]
 name = "rusty_xkcd"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Kixiron <kixiron.contact@gmail.com>"]
 edition = "2018"
 description = "An API wrapper for xkcd.com"
@@ -14,11 +14,12 @@ keywords = [
     "wrapper",
     "rest"
 ]
-license = "Apache-2.0"
+license = "MIT"
 exclude = [
     "benches/*",
     "tests/*",
     ".travis.yml",
+    ".gitlab-ci.yml",
     ".gitignore",
     "target/*"
 ]
@@ -27,5 +28,6 @@ exclude = [
 quick-error = "1.2.2"
 serde_json = "1.0.39"
 reqwest = "0.9.11"
+scraper = "0.9.1"
 chrono = "0.4.6"
 rand = "0.6.5"

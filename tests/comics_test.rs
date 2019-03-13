@@ -4,10 +4,11 @@ extern crate rusty_xkcd;
 use rusty_xkcd::Comic;
 
 #[test]
+/// Test the get_comic() function
 fn get_comic_test() {
     use chrono::prelude::*;
 
-    // Aquire test comic
+    // Acquire test comic
     let test_comic: Comic = Comic::get_comic(589).unwrap();
     // Create control comic
     let control_comic: Comic = Comic {
@@ -23,12 +24,63 @@ fn get_comic_test() {
 }
 
 #[test]
+/// Test the get_latest_comic() function
 fn get_latest_comic_test() {
     // Fetch the latest comic twice to see if they are the same
     let latest_comic: Comic = Comic::get_latest_comic().unwrap();
     let control_comic: Comic = Comic::get_comic(latest_comic.number).unwrap();
 
     compare_comics(latest_comic, control_comic);
+}
+
+#[test]
+/// Test for Comic data
+fn comic_data_test() {
+    use chrono::prelude::*;
+
+    let control_comic: Comic = Comic {
+        title: String::from("Designated Drivers"),
+        url: String::from("http://xkcd.com/589"),
+        img_url: String::from("https://imgs.xkcd.com/comics/designated_drivers.png"),
+        alt_text: String::from("Calling a cab means cutting into beer money."),
+        number: 589,
+        date: Utc.ymd(2009, 5, 27),
+    };
+
+    assert_eq!(control_comic.title, String::from("Designated Drivers"));
+    assert_eq!(control_comic.url, String::from("http://xkcd.com/589"));
+    assert_eq!(
+        control_comic.img_url,
+        String::from("https://imgs.xkcd.com/comics/designated_drivers.png")
+    );
+    assert_eq!(
+        control_comic.alt_text,
+        String::from("Calling a cab means cutting into beer money.")
+    );
+    assert_eq!(control_comic.number, 589);
+    assert_eq!(control_comic.date, Utc.ymd(2009, 5, 27));
+}
+
+#[test]
+/// Test for Comic traits
+fn comic_data_methods_test() {
+    use chrono::prelude::*;
+
+    let control_comic: Comic = Comic {
+        title: String::from("Designated Drivers"),
+        url: String::from("http://xkcd.com/589"),
+        img_url: String::from("https://imgs.xkcd.com/comics/designated_drivers.png"),
+        alt_text: String::from("Calling a cab means cutting into beer money."),
+        number: 589,
+        date: Utc.ymd(2009, 5, 27),
+    };
+
+    assert_eq!(control_comic.title, control_comic.get_title());
+    assert_eq!(control_comic.url, control_comic.get_url());
+    assert_eq!(control_comic.img_url, control_comic.get_img_url());
+    assert_eq!(control_comic.alt_text, control_comic.get_alt_text());
+    assert_eq!(control_comic.number, control_comic.get_number());
+    assert_eq!(control_comic.date, control_comic.get_date());
 }
 
 #[test]

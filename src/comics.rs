@@ -5,16 +5,90 @@ extern crate serde_json;
 
 use super::Error;
 
-/// # Comic
-/// The struct containing all xkcd-comic related data and functions
+/// The struct containing all xkcd-comic related data and methods
+///
+/// ## Usage
+/// There are three main ways to get a fully primed `Comic`
+///
+/// #### Get the comic by number
+/// ```rust
+/// # extern crate rusty_xkcd;
+/// # use rusty_xkcd::Comic;
+/// let comic = Comic::get_comic(100).unwrap(); // Get a comic by it's number
+/// ```
+/// However, getting a comic does have limits, as requesting a comic
+/// that does not exist will throw an `InvalidNumber` error
+/// ```should_panic
+/// # extern crate rusty_xkcd;
+/// # use rusty_xkcd::Comic;
+/// let comic = Comic::get_comic(-1).unwrap(); // Too low!
+/// ```
+/// ```should_panic
+/// # extern crate rusty_xkcd;
+/// # use rusty_xkcd::Comic;
+/// let comic = Comic::get_comic(999_999).unwrap(); // Too high!
+/// ```
+///
+/// #### Get the latest comic
+/// ```rust
+/// # extern crate rusty_xkcd;
+/// # use rusty_xkcd::Comic;
+/// let comic = Comic::get_latest_comic().unwrap(); // Get the latest comic
+/// ```
+///
+/// #### Get a random comic
+/// ```rust
+/// # extern crate rusty_xkcd;
+/// # use rusty_xkcd::Comic;
+/// let comic = Comic::get_random_comic().unwrap(); // Get a random comic
+/// ```
+///
+/// ## Data
+/// Data from the `Comic` struct can be extracted in one of two ways:
+///
+/// By 'dotting' the instance
+/// ```rust
+/// # extern crate rusty_xkcd;
+/// # use rusty_xkcd::Comic;
+/// let comic_number = Comic::get_random_comic().unwrap().number; // Get the comic's number
+/// ```
+///
+/// Or by using one of the data methods
+/// ```rust
+/// # extern crate rusty_xkcd;
+/// # use rusty_xkcd::Comic;
+/// let comic_number = Comic::get_random_comic().unwrap().get_number(); // Get the latest comic's number
+/// ```
+///
+/// ## Errors
+/// There are two errors that can be thrown while acquiring a comic
+///
+/// #### Invalid Number
+/// An invalid number error comes from your software or the end user requesting
+/// an xkcd comic with a number that is either less than or equal to zero or
+/// greater than the newest xkcd comic's number. For those who speak code more
+/// fluently than english, here's a snippet:
+/// ```rust
+/// # let input_number = 0;
+/// # let latest_comic_number = 0;
+/// # fn throw_error() {
+/// #     println!("Thanks for looking at the source code!");
+/// # }
+/// if input_number <= 0 || input_number > latest_comic_number {
+///     throw_error();
+/// }
+/// ```
+///
+/// #### Request Error
+/// A request error can happen for any number of reasons, but all are related to
+/// some sort of failure in querying the xkcd api
 #[derive(Debug)]
-#[allow(dead_code)]
 pub struct Comic {
     /// Title of the comic
     pub title: String,
-    /// Url of the comic
+    /// Url of the comic `https://xkcd.com/{comic_number}`
     pub url: String,
-    /// Image Url of tht comic
+    /// Image Url of tht comic `https://imgs.xkcd.com/comics/{image_name}.png`
     pub img_url: String,
     /// Alt text or tooltip text of the comic
     pub alt_text: String,
@@ -25,7 +99,6 @@ pub struct Comic {
 }
 
 impl Comic {
-    /// # Get Comic
     /// Fetches the chosen xkcd comic via `i32`
     ///
     /// ## Usage
@@ -39,7 +112,7 @@ impl Comic {
     pub fn get_comic(comic_num: i32) -> Result<Comic, Error> {
         // If requested comic's number is less than or equal to zero, error
         if comic_num <= 0 {
-            Err(Error::InvalidNumber(comic_num))?;
+            Err(Error::Number(comic_num))?;
         }
 
         // Get newest comic's number
@@ -47,21 +120,18 @@ impl Comic {
 
         // If the requested number is greater than the newest or lower than zero, error
         if comic_num > newest_comic_num {
-            Err(Error::InvalidNumber(comic_num))?;
+            Err(Error::Number(comic_num))?;
         }
 
         let xkcd_url: String = format!("http://xkcd.com/{}/info.0.json", comic_num); // Form url
 
-        // Request and return comic (Or any error that occured)
+        // Request and return comic (Or any error that occurred)
         match request_comic(&xkcd_url) {
             Ok(data) => Ok(data),
             Err(e) => Err(e),
         }
     }
-}
 
-impl Comic {
-    /// # Get Latest Comic
     /// Fetches the latest xkcd comic.
     ///
     /// ## Usage
@@ -79,11 +149,7 @@ impl Comic {
             Err(e) => Err(e),
         }
     }
-}
 
-// NOT WORKING
-impl Comic {
-    /// # Get Random Comic
     /// Fetches a random xkcd comic
     ///
     /// ## Usage
@@ -102,11 +168,40 @@ impl Comic {
 
         Comic::get_comic(comic_num)
     }
+
+    /// Fetches the current comic's title
+    pub fn get_title(&self) -> String {
+        (*self.title).to_string()
+    }
+
+    /// Fetches the current comic's url
+    pub fn get_url(&self) -> String {
+        (*self.url).to_string()
+    }
+
+    /// Fetches the current comic's image url
+    pub fn get_img_url(&self) -> String {
+        (*self.img_url).to_string()
+    }
+
+    /// Fetches the current comic's alt/tooltip text
+    pub fn get_alt_text(&self) -> String {
+        (*self.alt_text).to_string()
+    }
+
+    /// Fetches the current comic's number
+    pub fn get_number(&self) -> i32 {
+        self.number
+    }
+
+    /// Fetches the current comic's date
+    pub fn get_date(&self) -> chrono::Date<chrono::Utc> {
+        self.date
+    }
 }
 
 /// # Request Comic
 /// Requests a comic via formed url
-/// Only accessable within `comics.rs`
 ///
 /// ## Usage
 /// ```rust
@@ -115,7 +210,7 @@ impl Comic {
 /// # fn request_comic(url: &str) -> Result<Comic, Error> {
 /// #     Ok(Comic {
 /// #         title: String::from("Designated Drivers"),
-/// #         url: String::from("http://xkcd.com/589/"),
+/// #         url: String::from("http://xkcd.com/589"),
 /// #         img_url: String::from("https://imgs.xkcd.com/comics/designated_drivers.png"),
 /// #         alt_text: String::from("Calling a cab means cutting into beer money."),
 /// #         number: 589,
@@ -132,7 +227,7 @@ impl Comic {
 fn request_comic(url: &str) -> Result<Comic, Error> {
     let body: String = match reqwest::get(url) {
         Ok(mut res) => res.text().unwrap(),
-        Err(e) => return Err(Error::RequestError(e.to_string())),
+        Err(e) => Err(Error::Request(e.to_string()))?,
     };
     Ok(parse_comic(&body))
 }
@@ -143,7 +238,7 @@ fn parse_comic(raw_json: &str) -> Comic {
     // Document This
     use chrono::prelude::*;
 
-    // Desearilize the JSON from xkcd API
+    // Deserialize the JSON from xkcd API
     let value: serde_json::Value = serde_json::from_str(raw_json).unwrap();
     let num: i32 = value["num"].to_string().parse::<i32>().unwrap();
 
@@ -153,7 +248,7 @@ fn parse_comic(raw_json: &str) -> Comic {
         value["day"].as_str().unwrap().to_string(),
         value["year"].as_str().unwrap().to_string(),
     );
-    // Ghost comic_date into a Date
+    // Shadow comic_date into a Date
     let comic_date: Date<Utc> = Utc.ymd(
         comic_date.2.parse::<i32>().unwrap(),
         comic_date.0.parse::<u32>().unwrap(),
@@ -173,7 +268,6 @@ fn parse_comic(raw_json: &str) -> Comic {
 
 /// # Get Latest Comic Number
 /// Gets the number of the most recent xkcd comic.
-/// Only accessable within `comics.rs`
 ///
 /// ## Usage
 ///
