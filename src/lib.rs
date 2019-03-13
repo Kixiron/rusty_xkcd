@@ -77,12 +77,8 @@
 extern crate quick_error;
 
 mod errors;
-/// ## Errors
-/// The module containing all errors for rusty_xkcd
 pub use errors::Error;
 
-/// ## Comics
-/// The module containing all comic logic and interfaces for rusty_xkcd
 mod comics;
 pub use comics::Comic;
 

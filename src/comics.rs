@@ -247,7 +247,7 @@ fn parse_comic(raw_json: &str) -> Comic {
     // Document This
     use chrono::prelude::*;
 
-    // Desearilize the JSON from xkcd API
+    // Deserialize the JSON from xkcd API
     let value: serde_json::Value = serde_json::from_str(raw_json).unwrap();
     let num: i32 = value["num"].to_string().parse::<i32>().unwrap();
 
