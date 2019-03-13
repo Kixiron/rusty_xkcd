@@ -1,15 +1,18 @@
 extern crate rusty_xkcd;
 
-use rusty_xkcd::{Comic, Explanation};
+use rusty_xkcd::Explanation;
 
 #[test]
-fn explication_from_str_test() {}
+fn get_explanation_test() {
+
+}
 
 #[test]
-fn explication_from_ref_str_test() {}
+fn get_xkcd_test() {
+
+}
 
 #[test]
-fn explication_from_string_test() {}
+fn explanation_data_methods_test() {
 
-#[test]
-fn explication_from_comic_test() {}
+}

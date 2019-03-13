@@ -82,7 +82,6 @@ use super::{Error, Explanation};
 /// A request error can happen for any number of reasons, but all are related to some sort of failure
 /// in querying the xkcd api
 #[derive(Debug)]
-#[allow(dead_code)]
 pub struct Comic {
     /// Title of the comic
     pub title: String,
