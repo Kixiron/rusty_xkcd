@@ -54,6 +54,7 @@ fn fetch_explanation(num: i32) -> Result<Explanation, Error> {
         Ok(mut res) => res.text().unwrap(),
         Err(e) => Err(Error::RequestError(e.to_string()))?,
     };
+    println!("{:?}", body);
     Ok(parse_html(&body, num))
 }
 
