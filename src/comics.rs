@@ -14,33 +14,33 @@ use super::{Error, Explanation};
 /// ```rust
 /// # extern crate rusty_xkcd;
 /// # use rusty_xkcd::Comic;
-/// let comic = get_comic(100).unwrap(); // Get a comic by it's number
+/// let comic = Comic::get_comic(100).unwrap(); // Get a comic by it's number
 /// ```
 /// However, getting a comic does have limits, as requesting a comic
 /// that does not exist will throw an `InvalidNumber` error
 /// ```should_panic
 /// # extern crate rusty_xkcd;
 /// # use rusty_xkcd::Comic;
-/// let comic = get_comic(-1).unwrap(); // Too low!
+/// let comic = Comic::get_comic(-1).unwrap(); // Too low!
 /// ```
 /// ```should_panic
 /// # extern crate rusty_xkcd;
 /// # use rusty_xkcd::Comic;
-/// let comic = get_comic(999_999).unwrap(); // Too high!
+/// let comic = Comic::get_comic(999_999).unwrap(); // Too high!
 /// ```
 ///
 /// #### Get the latest comic
 /// ```rust
 /// # extern crate rusty_xkcd;
 /// # use rusty_xkcd::Comic;
-/// let comic = get_latest_comic().unwrap(); // Get the latest comic
+/// let comic = Comic::get_latest_comic().unwrap(); // Get the latest comic
 /// ```
 ///
 /// #### Get a random comic
 /// ```rust
 /// # extern crate rusty_xkcd;
 /// # use rusty_xkcd::Comic;
-/// let comic = get_random_comic().unwrap(); // Get a random comic
+/// let comic = Comic::get_random_comic().unwrap(); // Get a random comic
 /// ```
 ///
 /// ## Data
@@ -49,15 +49,15 @@ use super::{Error, Explanation};
 /// By 'dotting' the instance
 /// ```rust
 /// # extern crate rusty_xkcd;
-/// # using rusty_xkcd::Comic;
-/// let comic_number = get_random_comic().unwrap().number; // Get the comic's number
+/// # use rusty_xkcd::Comic;
+/// let comic_number = Comic::get_random_comic().unwrap().number; // Get the comic's number
 /// ```
 ///
 /// Or by using one of the data methods
 /// ```rust
-/// # extern crate rusty_xkcd
-/// # using rusty_xkcd::Comic;
-/// let comic_number = get_random_comic().unwrap().get_number(); // Get the latest comic's number
+/// # extern crate rusty_xkcd;
+/// # use rusty_xkcd::Comic;
+/// let comic_number = Comic::get_random_comic().unwrap().get_number(); // Get the latest comic's number
 /// ```
 ///
 /// ## Errors
