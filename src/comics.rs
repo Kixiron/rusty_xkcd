@@ -3,7 +3,7 @@ extern crate rand;
 extern crate reqwest;
 extern crate serde_json;
 
-use super::{Error, Explanation};
+use super::Error;
 
 /// The struct containing all xkcd-comic related data and methods
 ///
@@ -67,7 +67,8 @@ use super::{Error, Explanation};
 /// An invalid number error comes from your software or the end user requesting
 /// an xkcd comic with a number that is either less than or equal to zero or
 /// greater than the newest xkcd comic's number. For those who speak code more
-/// fluently than english, here's a snippet: ```rust
+/// fluently than english, here's a snippet:
+/// ```rust
 /// # let input_number = 0;
 /// # let latest_comic_number = 0;
 /// # fn throw_error() {
@@ -111,7 +112,7 @@ impl Comic {
     pub fn get_comic(comic_num: i32) -> Result<Comic, Error> {
         // If requested comic's number is less than or equal to zero, error
         if comic_num <= 0 {
-            Err(Error::Number::new(comic_num))?;
+            Err(Error::Number(comic_num))?;
         }
 
         // Get newest comic's number
@@ -119,7 +120,7 @@ impl Comic {
 
         // If the requested number is greater than the newest or lower than zero, error
         if comic_num > newest_comic_num {
-            Err(Error::Number::new(comic_num))?;
+            Err(Error::Number(comic_num))?;
         }
 
         let xkcd_url: String = format!("http://xkcd.com/{}/info.0.json", comic_num); // Form url
@@ -166,11 +167,6 @@ impl Comic {
         let comic_num: i32 = thread_rng().gen_range(1, latest_comic);
 
         Comic::get_comic(comic_num)
-    }
-
-    /// Fetches the `Explanation` of the current comic
-    pub fn explain(&self) -> Result<Explanation, Error> {
-        Explanation::explain(self.number)
     }
 
     /// Fetches the current comic's title
@@ -231,7 +227,7 @@ impl Comic {
 fn request_comic(url: &str) -> Result<Comic, Error> {
     let body: String = match reqwest::get(url) {
         Ok(mut res) => res.text().unwrap(),
-        Err(e) => Err(Error::Request::new(&e.to_string()))?,
+        Err(e) => Err(Error::Request(e.to_string()))?,
     };
     Ok(parse_comic(&body))
 }

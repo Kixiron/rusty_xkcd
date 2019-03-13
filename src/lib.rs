@@ -22,7 +22,7 @@
 //! To start, add this line to your `Cargo.toml`
 //! ```toml
 //! [dependencies]
-//! rusty_xkcd = "0.1.1"
+//! rusty_xkcd = "0.1.2"
 //! ```
 //!
 //! Then import the crate to wherever you want to use it
@@ -70,6 +70,3 @@ pub use errors::Error;
 
 mod comics;
 pub use comics::Comic;
-
-mod explanation;
-pub use explanation::Explanation;
